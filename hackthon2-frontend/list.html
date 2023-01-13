@@ -4,98 +4,64 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-  <style>
-    #form-control {
-      width: 50px;
-    }
-    #sec1, #sec2, #sec5, #sec6 {
-      width: 220px;
-    }
-
-    #sec3 {
-      width: 300px;
-    }
-
-    #sec4, #sec7 {
-      width: 700px;
-    }
-
-    #border{
-      border: 1px black solid;
-      border-radius: 7px;
-      margin-left: 10px;
-    }
-
-    #input {
-      border: 3px black solid;
-      border-radius: 7px;
-      margin-left: 10px;
-    }
-
-  </style>
   <title>Document</title>
 </head>
 <body>
-<h1>택배 조회</h1>
-
-<section id="sec1">
-  <div class="input-group flex-nowrap" id="border">
-    <span class="input-group-text" id="d-no">번호</span>
-    <input type="text" class="form-control" readonly>
-  </div><br>
-</section>
-
-<section id="sec2">
-  <div class="input-group flex-nowrap" id="border">
-    <span class="input-group-text" id="d-no">이름</span>
-    <input type="text" class="form-control" readonly>
-  </div><br>
-</section>
-
-<section id="sec3">
-  <div class="input-group flex-nowrap" id="border">
-    <span class="input-group-text" id="d-no">전화번호</span>
-    <input type="text" class="form-control" readonly>
-  </div><br>
-</section>
-
-<section id="sec4">
-  <div class="input-group flex-nowrap" id="border">
-    <span class="input-group-text" id="d-no">주소</span>
-    <input type="text" class="form-control" readonly>
-  </div><br>
-</section>
-
-<section id="sec5">
-  <div class="input-group flex-nowrap" id="border">
-    <span class="input-group-text" id="d-no">결제 방식</span>
-    <input type="text" class="form-control" readonly>
-  </div><br>
-</section>
-
-<section id="sec6">
-  <div class="input-group flex-nowrap" id="border">
-    <span class="input-group-text" id="d-no">배송 상태</span>
-    <input type="text" class="form-control" readonly>
-  </div><br>
-</section>
-
-<section id="sec7">
-  <div class="input-group flex-nowrap" id="border">
-    <span class="input-group-text" id="d-no">배송 메세지</span>
-    <input type="text" class="form-control" readonly>
-  </div><br>
-</section>
-
-<button type="button" id="input">처음으로</button>
+<h1>택배 목록</h1>
+<table border="1">
+  <thead>
+    <tr>
+      <th>번호</th>
+      <th>이름</th>
+      <th>결제방식</th>
+      <th>배송상태</th>
+      <th>배송메세지</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
 
 <script>
+var tbody = document.querySelector("tbody");
 
-document.querySelector('#input').onclick = (e) => {
-  location.href = "index.html";
-};
+function getPayMent(paym) {
+  switch (paym) {
+    case 0: return "무료배송";
+    case 1: return "선불";
+    case 2: return "착불";
+    default: return "";
+  }
+}
 
+function getStatus(status) {
+  switch (status) {
+    case 0: return "배송 준비";
+    case 1: return "배송중";
+    case 2: return "배송 완료";
+    default: return "";
+  }
+}
+
+fetch('http://localhost:8080/delivery')
+  .then((response) => {return response.json();})
+  .then((obj) => {
+    var html = '';
+    for (var d of obj.data) {
+      html += `<tr>
+        <td>${d.no}</td>
+        <td><a href="view.html?no=${d.no}">${d.name} </a></td>
+        <td>${d.paym}</td>
+        <td>${getPayMent(d.paym)}</td>
+        <td>${getStatus(d.status)}</td>
+        </tr>\n`;
+    }
+    tbody.innerHTML = html;
+  })
+  .catch((err) => {
+    alert("서버 요청 오류!");
+    console.log(err);
+  });  
 </script>
 </body>
 </html>
