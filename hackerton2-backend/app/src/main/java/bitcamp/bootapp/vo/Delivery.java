@@ -7,6 +7,20 @@ public class Delivery {
   public String name;
   public String addr;
   public String msg;
+  public int paym;
+  public int status;
+  public int getPaym() {
+    return paym;
+  }
+  public void setPaym(int paym) {
+    this.paym = paym;
+  }
+  public int getStatus() {
+    return status;
+  }
+  public void setStatus(int status) {
+    this.status = status;
+  }
   public String createdDate;
 
   public int getNo() {
