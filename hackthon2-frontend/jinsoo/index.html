@@ -59,7 +59,7 @@
       <li class="nav-item">
         <a class="nav-link " href="index.html">
           <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+          <span>전체 현황</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -184,7 +184,7 @@
                         <th scope="col">invNo</th>
                         <th scope="col">발송인</th>
                         <th scope="col">수취인</th>
-                        <th scope="col">운임비</th>
+                        <th scope="col">지불 방식</th>
                         <th scope="col">배송요청사항</th>
                         <th scope="col">배송상태</th>
                       </tr>
@@ -258,7 +258,7 @@
     fetch('http://localhost:8080/deliverys')
       .then((response) => {return response.json();})
       .then((obj) => {
-        var html = '';
+        var html;
         for (var d of obj.data) {
           html += `<tr>
             <th scope="row"><a href="view.html?no=${d.no}">${d.no} </a></th>                        
