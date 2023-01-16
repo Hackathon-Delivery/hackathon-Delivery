@@ -17,13 +17,9 @@ import bitcamp.bootapp.vo.Delivery;
 @RestController
 public class DeliveryController {
 
-	DeliveryDao deliveryDao = new DeliveryDao();
+	@Autowired DeliveryDao deliveryDao;
 
-	public DeliveryController(DeliveryDao deliveryDao) {
-		this.deliveryDao = deliveryDao;
-	}
-
-	@PostMapping("/delivery")
+	@PostMapping("/deliverys")
 	public Object addDelivery(Delivery d) {
 
 		this.deliveryDao.insert(d);
@@ -35,7 +31,19 @@ public class DeliveryController {
 		return contentMap;
 	}
 
-	@GetMapping("/delivery/{no}")
+	@GetMapping("/deliverys")
+  public Object getDeliverys() {
+
+    Delivery[] d = this.deliveryDao.findAll();
+
+    Map<String,Object> contentMap = new HashMap<>();
+    contentMap.put("status", "success");
+    contentMap.put("data", d);
+
+    return contentMap;
+  }
+
+	@GetMapping("/deliverys/{no}")
 	public Object getDelivery(@PathVariable int no) {
 
 		Delivery d = this.deliveryDao.findByNo(no);
@@ -54,18 +62,7 @@ public class DeliveryController {
 		return contentMap;
 	}
 
-	@GetMapping("/delivery")
-	public Object getDeliverys() {
-		Delivery[] deliveryDao = this.deliveryDao.findAll();
-
-		Map<String, Object> contentMap = new HashMap<>();
-		contentMap.put("status", "success");
-		contentMap.put("data", deliveryDao);
-
-		return contentMap;
-	}
-
-	@PutMapping("/delivery/{no}")
+	@PutMapping("/deliverys/{no}")
 	public Object updateDelivery(Delivery d) {
 
 		Map<String,Object> contentMap = new HashMap<>();
@@ -77,8 +74,6 @@ public class DeliveryController {
 			return contentMap;
 		}
 
-		d.setCreatedDate(old.getCreatedDate());
-
 		this.deliveryDao.update(d);
 
 		contentMap.put("status", "success");
@@ -86,7 +81,7 @@ public class DeliveryController {
 		return contentMap;
 	}
 
-	@DeleteMapping("/delivery/{no}")
+	@DeleteMapping("/deliverys/{no}")
 	public Object deleteDelivery(@PathVariable int no) {
 
 		Delivery d = this.deliveryDao.findByNo(no);

@@ -15,7 +15,6 @@ public class DeliveryDao {
 
   public void insert(Delivery d) {
     d.setNo(++no);
-    d.setCreatedDate(new Date(System.currentTimeMillis()).toString());
     this.deliverys[this.count++] = d;
   }
 
