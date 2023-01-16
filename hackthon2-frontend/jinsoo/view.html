@@ -57,7 +57,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link  collapsed" href="index.html">
           <i class="bi bi-grid"></i>
           <span>전체 현황</span>
         </a>
@@ -71,7 +71,7 @@
       </li><!-- End 신규 배송접수 Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#tables-nav" href="list.html">
+        <a class="nav-link" data-bs-target="#tables-nav" href="list.html">
           <i class="bi bi-layout-text-window-reverse"></i>
           <span>배송현황</span>
         </a>
@@ -103,7 +103,7 @@
               <form class="row g-3">
                 <div>
                   <div class="col-md-3">
-                    <input type="text" class="form-control" id="d-no" readonly>
+                    <input type="text" class="form-control" id="d-invNo" readonly>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -397,7 +397,7 @@
         return;
       }
   
-      document.querySelector('#d-no').value = obj.data.no;
+      document.querySelector('#d-invNo').value = obj.data.invNo;
       document.querySelector('#d-senderName').value = obj.data.senderName;
       document.querySelector('#d-senderTel').value = obj.data.senderTel;
       document.querySelector('#d-senderPostNo').value = obj.data.senderPostNo;
@@ -423,7 +423,7 @@
     });
   
   document.querySelector('#update-btn').onclick = (e) => {
-    var No = document.querySelector('#d-no').value;
+    var invNo = document.querySelector('#d-invNo').value;
     var senderName = encodeURIComponent(document.querySelector('#d-senderName').value);
     var senderTel = document.querySelector('#d-senderTel').value;
     var senderPostNo = encodeURIComponent(document.querySelector('#d-senderPostNo').value);
@@ -448,7 +448,7 @@
       headers: {
         'Content-type': 'application/x-www-form-urlencoded'
       },
-      body: `senderName=${senderName}&senderTel=${senderTel}&senderPostNo=${senderPostNo}&senderRoadAddress=${senderRoadAddress}&senderOldAddress=${senderOldAddress}&senderDetailAddress=${senderDetailAddress}&senderNote=${senderNote}&reciverName=${reciverName}&reciverTel=${reciverTel}&reciverPostNo=${reciverPostNo}&reciverRoadAddress=${reciverRoadAddress}&reciverOldAddress=${reciverOldAddress}&reciverDetailAddress=${reciverDetailAddress}&reciverNote=${reciverNote}&paym=${paym}&item=${item}&status=${status}&msg=${msg}`
+      body: `invNo=${invNo}&senderName=${senderName}&senderTel=${senderTel}&senderPostNo=${senderPostNo}&senderRoadAddress=${senderRoadAddress}&senderOldAddress=${senderOldAddress}&senderDetailAddress=${senderDetailAddress}&senderNote=${senderNote}&reciverName=${reciverName}&reciverTel=${reciverTel}&reciverPostNo=${reciverPostNo}&reciverRoadAddress=${reciverRoadAddress}&reciverOldAddress=${reciverOldAddress}&reciverDetailAddress=${reciverDetailAddress}&reciverNote=${reciverNote}&paym=${paym}&item=${item}&status=${status}&msg=${msg}`
     })
     .then((response) => response.json())
     .then((obj) => {

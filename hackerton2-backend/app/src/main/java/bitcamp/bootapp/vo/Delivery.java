@@ -27,12 +27,18 @@ public class Delivery {
   public int item; // 배송물품 0: 의류, 1: 서신/서류, 2: 전자제품, 3: 식품류, 4: 잡화/서적
   public int status; // 비고 0: 배송 준비, 1: 발송중, 2: 배송 완료
   public String msg; // 배송요청사항
-  
+
   public int getNo() {
     return no;
   }
   public void setNo(int no) {
     this.no = no;
+  }
+  public long getInvNo() {
+    return invNo;
+  }
+  public void setInvNo(long invNo) {
+    this.invNo = invNo;
   }
   public String getSenderName() {
     return senderName;

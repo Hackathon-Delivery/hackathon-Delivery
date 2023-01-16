@@ -1,6 +1,5 @@
 package bitcamp.bootapp.dao;
 
-import java.sql.Date;
 import java.util.Arrays;
 import org.springframework.stereotype.Repository;
 import bitcamp.bootapp.vo.Delivery;
