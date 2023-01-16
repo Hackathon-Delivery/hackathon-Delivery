@@ -1,6 +1,10 @@
 #
+<<<<<<< HEAD
 #Mon Jan 16 11:50:07 KST 2023
 org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+=======
+#Mon Jan 16 11:28:42 KST 2023
+>>>>>>> f65faa0459e479f205fec44abcad2ad5c1890f69
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=17
 org.eclipse.jdt.core.compiler.source=17
