@@ -55,7 +55,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed " href="index.html">
           <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+          <span>전체 현황</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -361,6 +361,7 @@
 
 <script>
   document.querySelector('#add-btn').onclick = (e) => {
+    let invNo = getRandomInt(10000000, 99999999);
     let senderName = encodeURIComponent(document.querySelector('#d-senderName').value);
     let senderTel = document.querySelector('#d-senderTel').value;
     let senderPostNo = encodeURIComponent(document.querySelector('#d-senderPostNo').value);
@@ -385,7 +386,7 @@
       headers: {
         'Content-type': 'application/x-www-form-urlencoded'
       },
-      body: `senderName=${senderName}&senderTel=${senderTel}&senderPostNo=${senderPostNo}&senderRoadAddress=${senderRoadAddress}&senderOldAddress=${senderOldAddress}&senderDetailAddress=${senderDetailAddress}&senderNote=${senderNote}&reciverName=${reciverName}&reciverTel=${reciverTel}&reciverPostNo=${reciverPostNo}&reciverRoadAddress=${reciverRoadAddress}&reciverOldAddress=${reciverOldAddress}&reciverDetailAddress=${reciverDetailAddress}&reciverNote=${reciverNote}&paym=${paym}&item=${item}&status=${status}&msg=${msg}`
+      body: `invNo=${invNo}senderName=${senderName}&senderTel=${senderTel}&senderPostNo=${senderPostNo}&senderRoadAddress=${senderRoadAddress}&senderOldAddress=${senderOldAddress}&senderDetailAddress=${senderDetailAddress}&senderNote=${senderNote}&reciverName=${reciverName}&reciverTel=${reciverTel}&reciverPostNo=${reciverPostNo}&reciverRoadAddress=${reciverRoadAddress}&reciverOldAddress=${reciverOldAddress}&reciverDetailAddress=${reciverDetailAddress}&reciverNote=${reciverNote}&paym=${paym}&item=${item}&status=${status}&msg=${msg}`
     })
     .then((response) => {return response.json();})
     .then((obj) => {

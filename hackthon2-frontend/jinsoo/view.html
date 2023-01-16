@@ -58,7 +58,7 @@
       <li class="nav-item">
         <a class="nav-link " href="index.html">
           <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
+          <span>전체 현황</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
@@ -397,6 +397,7 @@
         return;
       }
   
+      document.querySelector('#d-no').value = obj.data.no;
       document.querySelector('#d-senderName').value = obj.data.senderName;
       document.querySelector('#d-senderTel').value = obj.data.senderTel;
       document.querySelector('#d-senderPostNo').value = obj.data.senderPostNo;

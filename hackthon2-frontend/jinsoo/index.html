@@ -83,11 +83,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1>전체 현황</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item active">전체 현황</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -109,7 +109,7 @@
                       <i class="ri ri-truck-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>h6자리</h6>
+                      <h6 id="total"></h6>
                     </div>
                   </div>
                 </div>
@@ -127,7 +127,7 @@
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>h6자리</h6>
+                      <h6 id="prepare"></h6>
                     </div>
                   </div>
                 </div>
@@ -145,7 +145,7 @@
                       <i class="bi bi-truck"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>h6 자리</h6>
+                      <h6 id="delivering"></h6>
                     </div>
                   </div>
                 </div>
@@ -163,7 +163,7 @@
                       <i class="bi bi-box"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>h6자리</h6>
+                      <h6 id="complete"></h6>
                     </div>
                   </div>
                 </div>
@@ -257,10 +257,15 @@
     fetch('http://localhost:8080/deliverys')
       .then((response) => {return response.json();})
       .then((obj) => {
-        let html;
-        for (let d of obj.data) {
+        console.log(obj);
+        let html = '';
+        let readycnt = 0;
+        let delivering = 0;
+        let complete = 0;
+
+        for (var d of obj.data) {
           html += `<tr>
-            <th scope="row"><a href="view.html?no=${d.no}">${d.no} </a></th>                        
+            <th scope="row"><a href="view.html?no=${d.no}">${d.invNo} </a></th>                        
             <td>${d.senderName}</td>
             <td>${d.reciverName}</td>
             <td>${getPaym(d.paym)}</td>
@@ -268,10 +273,25 @@
             <td><span class="badge bg-success">${getStatus(d.status)}</span></td>
             </tr>\n`;
         }
+
+        for (var i = 0; i < obj.data.length; i++) {
+          if (obj.data[i].status == 0) {
+            readycnt++;
+          } else if (obj.data[i].status == 1) {
+            delivering++;
+          } else {
+            complete++;
+          }
+        }
+
         // <span class="badge bg-warning">배송준비</span>
         // <span class="badge bg-danger">배송중</span>
         // <span class="badge bg-success">배송완료</span>
         tbody.innerHTML = html;
+        document.querySelector('#total').innerHTML = obj.data.length;
+        document.querySelector('#prepare').innerHTML = readycnt;
+        document.querySelector('#delivering').innerHTML = delivering;
+        document.querySelector('#complete').innerHTML = complete;
       })
       .catch((err) => {
         alert("서버 요청 오류!");
