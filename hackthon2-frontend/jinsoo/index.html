@@ -238,6 +238,22 @@
 
   <script>
     var tbody = document.querySelector("tbody");
+    function getPaym(paym) {
+    switch (paym) {
+    case 1: return "선불";
+    case 2: return "착불";
+    case 0: return "무료배송";
+    default: return "";
+  }
+}
+  function getStatus(status) {
+    switch (status) {
+      case 1: return "배송중";
+      case 2: return "배송완료";
+      case 0: return "무료배송";
+      default: return "";
+    }
+  }
     
     fetch('http://localhost:8080/deliverys')
       .then((response) => {return response.json();})
@@ -248,9 +264,9 @@
             <th scope="row"><a href="view.html?no=${d.no}">${d.no} </a></th>                        
             <td>${d.senderName}</td>
             <td>${d.reciverName}</td>
-            <td>${d.paym}</td>
+            <td>${getPaym(d.paym)}</td>
             <td>${d.msg}</td>
-            <td><span class="badge bg-success">${d.status}</span></td>
+            <td><span class="badge bg-success">${getStatus(d.status)}</span></td>
             </tr>\n`;
         }
         // <span class="badge bg-warning">배송준비</span>
