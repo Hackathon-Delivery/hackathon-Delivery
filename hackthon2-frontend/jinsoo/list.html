@@ -10,8 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="assets/img/favicon.ico" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -88,7 +87,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">배송 현황</li>
+          <li class="breadcrumb-item">배송현황</li>
           <li class="breadcrumb-item active">전체 배송현황</li>
         </ol>
       </nav>
@@ -153,7 +152,7 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    var tbody = document.querySelector("tbody");
+    let tbody = document.querySelector("tbody");
     
     function getPaym(paym) {
   switch (paym) {
@@ -174,8 +173,8 @@ function getStatus(status) {
     fetch('http://localhost:8080/deliverys')
       .then((response) => {return response.json();})
       .then((obj) => {
-        var html = '';
-        for (var d of obj.data) {
+        let html = '';
+        for (let d of obj.data) {
           html += `<tr>
             <th scope="row"><a href="view.html?no=${d.no}">${d.invNo} </a></th>                        
             <td>${d.senderName}</td>
