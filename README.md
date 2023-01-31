@@ -6,7 +6,7 @@
 ![Spring](https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=Spring&logoColor=white) 
 ![Eclipse](https://img.shields.io/badge/Eclipse-2c1f54?style=flat-square&logo=eclipse&logoColor=white) 
 
-## 헤커톤 과제 내용
+## 해커톤 과제 내용
 <details>
 <summary>여기를 눌러주세요</summary>
   <div markdown="1">       
@@ -48,12 +48,34 @@
   </div>
 </details>
 
+<br/>
+
 ## 해커톤 프로젝트명 : CRUD를 적용한 배송관리시스템
-1. 프로젝트 컨셉
+### 1. 프로젝트 컨셉
  - 쇼핑몰에서 발송하는 배송물(택배)을 배송관리시스템으로 관리
  - 전체현황 : 배송현황 / 배송준비 / 배송중 / 배송 완료
 
- 2. Backend 파트
+<br/>
+
+ ### 2. Backend 파트
   - delivery class에 사용할 변수 선언
   - 이클립스 소스 기능을 이용하여 getter, setter를 만들었음
-  - 
+  - @Configuration을 사용하여 인스턴스를 자동 생성
+  - CORS 해결을 위하여 addCorsMappings 메소드를 사용
+  - 관리 시스템 구현에 필요한 Method들을 DeliveryDao에 선언함
+  - CRUD 구현을 위한 Method <br/>
+    @PostMapping <br/>
+    @GetMapping <br/>
+    @PutMapping <br/>
+    @DeleteMapping <br/>
+
+### 3. Frontend 파트
+  - BootStrap DashBoard 사용
+  - PostMapping 경우, 입력받은 데이터를 innerHTML를 이용하여 tbody에 출력
+  - 실시간 데이터 출력
+  - 실시간 배송현황 카운트
+  - 카카오 주소찾기 Api 적용
+  - 적용 버튼 구현 및 변경/삭제 <br/>
+
+### 4. 기타사항
+  - 깃허브 팀레포 생성하여 적용
